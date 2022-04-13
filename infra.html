@@ -1,0 +1,446 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B.M. Narode</title>
+</head>
+<!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous"> -->
+<link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+<style>
+    * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+        -webkit-font-smoothing: antialiased;
+    }
+
+    /* ye bphot powerfull hai bss yahi pr chane kro pur atheme change ho jayega*/
+    :root {
+        --primary: #933ded;
+        --dark: #232323;
+        --pure: #fff;
+        --smoke: whitesmoke;
+        --dark-gray: #999;
+    }
+
+    body {
+        background: var(--dark);
+        color: var(--pure);
+    }
+
+    .container {
+        width: 1152px;
+        max-width: 90%;
+        margin: 0 auto;
+    }
+
+    .nav-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .brand {
+
+        display: flex;
+        align-items: center;
+    }
+
+    .brand svg {
+        height: 30px;
+        margin-right: 10px;
+    }
+
+    .brand svg path {
+        fill: var(--pure);
+    }
+
+    .nav-wrapper ul.nav-list {
+        list-style: none;
+        display: flex;
+        align-items: center;
+    }
+
+    .nav-wrapper ul.nav-list li {
+        margin-left: 30px;
+        padding: 20px 0;
+        position: relative;
+    }
+
+    .nav-wrapper ul.nav-list li a {
+        color: var(--pure);
+        text-decoration: none;
+        letter-spacing: 1px;
+        transition: all .5s ease-in-out;
+    }
+
+    .nav-wrapper ul.nav-list li.active a {
+        color: var(--primary);
+    }
+
+    .btn {
+        background: var(--primary);
+        color: var(--pure);
+        outline: none;
+        padding: 8px 20px;
+        font-size: 14px;
+        cursor: pointer;
+        letter-spacing: 1px;
+        border: 1px solid transparent;
+        transition: all .5s ease-in-out;
+    }
+
+    .nav-wrapper ul.nav-list li a:hover {
+        color: var(--primary);
+    }
+
+    .btn:hover {
+        background: transparent;
+        border: 1px solid var(--pure);
+
+    }
+
+    main section.Header {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        margin-top: 160px;
+        /* margin-right: 160px; */
+    }
+
+    main section.Header h1 {
+        font-size: 36px;
+        font-weight: 100;
+        text-transform: capitalize;
+        margin-bottom: 20px;
+    }
+
+    main section.Header h4 {
+        font-weight: 100;
+        margin-bottom: 10px;
+        color: var(--dark-gray);
+    }
+
+    nav ul.dropdown-list {
+        list-style: none;
+        display: block;
+        background: var(--smoke);
+        padding: 6px 16px;
+        position: absolute;
+        width: max-content;
+        z-index: 9999;
+        left: 50%;
+        transform: translateX(-50%);
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    .nav-wrapper ul.dropdown-list li {
+        margin-left: 0;
+        padding: 5px 0;
+    }
+
+    .nav-wrapper ul.dropdown-list li a {
+        color: var(--dark);
+    }
+
+    .nav-wrapper ul.nav-list li:hover .dropdown-list {
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    @keyframes moveUp {
+        0% {
+            opacity: 0;
+            transform: translateX(-50%) translateY(50px);
+        }
+
+        100% {
+            opacity: 1;
+            transform: translateX(-50%) translateY(20px);
+        }
+    }
+
+    .hamburger {
+        display: none;
+    }
+
+    .mobile .hamburger {
+        display: flex;
+        flex-direction: column;
+        padding: 20px 0;
+        cursor: pointer;
+    }
+
+    .mobile .hamburger span {
+        background: var(--pure);
+        width: 28px;
+        height: 2px;
+        margin-bottom: 8px;
+    }
+
+    .mobile ul.nav-list {
+        background: -webkit-linear-gradient(45deg, #434343, #000000);
+        background: linear-gradient(45deg, #434343, #000000);
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        padding-top: 80px;
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    .hamburger,
+    .brand {
+        z-index: 9999;
+    }
+
+    .mobile ul.nav-list.open {
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    .mobile .hamburger span {
+        transform-origin: left;
+        transition: all .3s ease-in-out;
+    }
+
+    .mobile ul.dropdown-list {
+        position: relative;
+        background: transparent;
+        text-align: center;
+        height: 0;
+        overflow-y: hidden;
+        padding-top: 0;
+        transition: opacity 1s ease-in-out;
+    }
+
+    .mobile .nav-wrapper ul li:hover .dropdown-list {
+        height: max-content;
+        padding-top: 6px;
+    }
+
+    .mobile ul.nav-list li {
+        margin: left 0;
+        text-align: center;
+    }
+
+    .mobile .nav-wrapper ul.dropdown-list li a {
+        color: darkgray;
+
+    }
+</style>
+
+<body class="mobile">
+    <nav>
+        <div class="container nav-wrapper">
+            <div class="brand">
+                <svg xmlns="http://www.w3.org/2000/svg" width="150" height="116" fill="currentColor" class="bi-truck" viewBox="0 0 16 16">
+                    <path d="M0 3.5A1.5 1.5 0 0 1 1.5 2h9A1.5 1.5 0 0 1 12 3.5V5h1.02a1.5 1.5 0 0 1 1.17.563l1.481 1.85a1.5 1.5 0 0 1 .329.938V10.5a1.5 1.5 0 0 1-1.5 1.5H14a2 2 0 1 1-4 0H5a2 2 0 1 1-3.998-.085A1.5 1.5 0 0 1 0 10.5v-7zm1.294 7.456A1.999 1.999 0 0 1 4.732 11h5.536a2.01 2.01 0 0 1 .732-.732V3.5a.5.5 0 0 0-.5-.5h-9a.5.5 0 0 0-.5.5v7a.5.5 0 0 0 .294.456zM12 10a2 2 0 0 1 1.732 1h.768a.5.5 0 0 0 .5-.5V8.35a.5.5 0 0 0-.11-.312l-1.48-1.85A.5.5 0 0 0 13.02 6H12v4zm-9 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm9 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
+                  </svg>
+                <span><strong>B.M. Narode</strong></span>
+            </div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-list">
+                <li class="active">
+                    <a href="index.html">Home</a>
+                </li>
+                <li >
+                    <a href="/about.html">About</a>
+                </li>
+                <li >
+                    <a href="/infra.html">Infrastructure</a>
+                    <ul class="Dropdown-list">
+                        <li> <a href="#">SEO optimisation</a></li>
+                        <li> <a href="#">digital marketting</a></li>
+                        <li> <a href="#">Web devlopment</a></li>
+                        <li> <a href="#">web design</a></li>
+                        <li> <a href="#">software develop</a></li>
+                        <li> <a href="#">Branding</a></li>
+                        <li> <a href="#">content writing</a></li>
+                    </ul>
+                </li>
+
+                <li >
+                    <a href="/Features.html">Features</a>
+                </li>
+                <li >
+                    <a href="/contact.html">contacts</a>
+                </li>
+                <li >
+                    <button class="btn">Login</button>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <main>
+        <section class="text-white-600 body-font">
+            <div class="container px-5 py-24 mx-auto">
+                <div class="flex flex-col text-center w-full mb-20">
+                    <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-white-900">We have Huge
+                        infrasrtuctre of loading vehicles</h1>
+                    <p class="lg:w-2/3 mx-auto leading-relaxed text-base">“As for relegated/delegated responsibility to
+                        ensure organizational software licensing compliance, management is still accountable when
+                        intellectual property rights are violated. If the safeguarding responsibility is assigned to an
+                        ineffective and/or inefficient unit within an organization, IT audit should recommend an
+                        alternative arrangement after the risks are substantiated.”
+                        ― Robert E. Davis
+                </div>
+                <div class="flex flex-wrap -m-4">
+                    <div class="lg:w-1/3 sm:w-1/2 p-4">
+                        <div class="flex relative">
+                            <img alt="gallery" class="absolute inset-0 w-full h-full object-cover object-center"
+                                src="img/BOLERO.jfif">
+                            <div
+                                class="px-8 py-10 relative z-10 w-full border-4 border-gray-200 bg-white opacity-0 hover:opacity-100">
+                                <h2 class="tracking-widest text-sm title-font font-medium text-indigo-500 mb-1">BOLERO
+                                </h2>
+                                <h1 class="title-font text-lg font-medium text-blue-900 mb-3">No of vehicles: 02</h1>
+                                <p class="leading-relaxed text-blue-900">Bolero Pik-Up comes with a longer cargo box and
+                                    1700kg payload, to carry any type of load. Bring home the Bolero Pik-up today, and
+                                    make way for prosperity. Multi Reflector Headlamps. Big Payload - 1700 KG. Big
+                                    Comfortable Cabin. BS6 Engine. Outstanding Mileage.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lg:w-1/3 sm:w-1/2 p-4">
+                        <div class="flex relative">
+                            <img alt="gallery" class="absolute inset-0 w-full h-full object-cover object-center"
+                                src="img/tata ace.jfif">
+                            <div
+                                class="px-8 py-10 relative z-10 w-full border-4 border-gray-200 bg-white opacity-0 hover:opacity-100">
+                                <h2 class="tracking-widest text-sm title-font font-medium text-indigo-500 mb-1"> TATA
+                                    ACE</h2>
+                                <h1 class="title-font text-lg font-medium text-blue-900 mb-3">No of vehicles: 04</h1>
+                                <p class="leading-relaxed text-blue-900">The Tata Ace is a mini truck launched in May
+                                    2005 by Tata Motors in India.
+                                    ...
+                                    Tata Ace
+                                    Wheelbase 2100 mm 2380 mm (Super Ace)
+                                    Length 3800 mm
+                                    Width 1500 mm
+                                    Height 1861 mm</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lg:w-1/3 sm:w-1/2 p-4">
+                        <div class="flex relative">
+                            <img alt="gallery" class="absolute inset-0 w-full h-full object-cover object-center"
+                                src="img/tata407.jfif">
+                            <div
+                                class="px-8 py-10 relative z-10 w-full border-4 border-gray-200 bg-white opacity-0 hover:opacity-100">
+                                <h2 class="tracking-widest text-sm title-font font-medium text-indigo-500 mb-1">TATA 407
+                                </h2>
+                                <h1 class="title-font text-lg font-medium text-blue-900 mb-3">No of vehicles: 18</h1>
+                                <p class="leading-relaxed text-blue-900">Tata 407 Gold SFC is a legendary light cargo
+                                    truck for all your logistics/transport shipping needs with the famous semi-forward
+                                    </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lg:w-1/3 sm:w-1/2 p-4">
+                        <div class="flex relative">
+                            <img alt="gallery" class="absolute inset-0 w-full h-full object-cover object-center"
+                                src="img/truck lpt 709.jfif">
+                            <div
+                                class="px-8 py-10 relative z-10 w-full border-4 border-gray-200 bg-white opacity-0 hover:opacity-100">
+                                <h2 class="tracking-widest text-sm title-font font-medium text-indigo-500 mb-1">Truck
+                                    LPT 407</h2>
+                                <h1 class="title-font text-lg font-medium text-blue-900 mb-3">No of vehicles: 55</h1>
+                                <p class="leading-relaxed text-blue-900">ata LPT 407 Ex2 Truck, 7.3 Tonne GVW ; Gross
+                                    Vehicle Weight, 7300 kg ; Fuel Type, Diesel ; Brand, Tata ; Warranty, 3 years / 3
+                                    lakh km on driveline ; Max. Power, 85 ...
+                                   
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lg:w-1/3 sm:w-1/2 p-4">
+                        <div class="flex relative">
+                            <img alt="gallery" class="absolute inset-0 w-full h-full object-cover object-center"
+                                src="img/APE XLTRA.jfif">
+                            <div
+                                class="px-8 py-10 relative z-10 w-full border-4 border-gray-200 bg-white opacity-0 hover:opacity-100">
+                                <h2 class="tracking-widest text-sm title-font font-medium text-indigo-500 mb-1">APE
+                                    XLTRA</h2>
+                                <h1 class="title-font text-lg font-medium text-blue-900 mb-3">No of vehicles: 03</h1>
+                                <p class="leading-relaxed text-blue-900">Photo booth fam kinfolk cold-pressed sriracha
+                                    leggings jianbing microdosing tousled waistcoat.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lg:w-1/3 sm:w-1/2 p-4">
+                        <div class="flex relative">
+                            <img alt="gallery" class="absolute inset-0 w-full h-full object-cover object-center"
+                                src="img/PIAGGIO.jfif">
+                            <div
+                                class="px-8 py-10 relative z-10 w-full border-4 border-gray-200 bg-white opacity-0 hover:opacity-100">
+                                <h2 class="tracking-widest text-sm title-font font-medium text-indigo-500 mb-1">PIAGGIO.
+                                </h2>
+                                <h1 class="title-font text-lg font-medium text-blue-900 mb-3">No of vehicles: 13</h1>
+                                <p class="leading-relaxed text-blue-900">The Vespa Piaggio is a family of scooters in
+                                    the Indian two-wheeler market manufactured by Vespa. Vespa has 2 Vespa Piaggio
+                                    models under its flagship. .</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <script>
+
+        window.addEventListener('resize', function () {
+            addclass();
+        })
+        function addclass() {
+            if (window.innerWidth < 860) {
+                document.body.classList.add('mobile')
+            }
+            else {
+                document.body.classList.remove('mobile')
+
+            }
+        }
+        window.onload = addclass;
+
+
+
+
+        let hamburger = document.querySelector('.hamburger');
+        let mobileNav = document.querySelector('.nav-list');
+
+        let isactive = false;
+
+        let bars = document.querySelectorAll(".hamburger span");
+        hamburger.addEventListener('click', function () {
+            mobileNav.classList.toggle('open');
+            if (!isactive) {
+                bars[0].style.transform = 'rotate(45deg)'
+                bars[1].style.opacity = 0;
+                bars[2].style.transform = 'rotate(-45deg)'
+                isactive = true;
+            }
+            else {
+                bars[0].style.transform = 'rotate(0deg)'
+                bars[1].style.opacity = 1;
+                bars[2].style.transform = 'rotate(0deg)'
+                isactive = false;
+            }
+        })
+    </script>
+</body>
+
+</html>
